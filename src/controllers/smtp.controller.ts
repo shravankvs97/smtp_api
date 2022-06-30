@@ -50,15 +50,21 @@ class SmtpController {
   ) {
     try {
       const smtpConfig = req.body;
+
       const newConfig = await this.smptService.testConfig(
         smtpConfig,
       );
-      res
-        .status(200)
-        .json({
+      if (newConfig) {
+        res.status(200).json({
           isPassed: true,
-          message: 'Smtp config passed test',
+          message: 'Smtp config test passed',
         });
+      } else {
+        res.status(200).json({
+          isPassed: false,
+          message: 'Smtp config test failed',
+        });
+      }
     } catch (error) {
       next(error);
     }

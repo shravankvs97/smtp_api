@@ -12,7 +12,7 @@ class App {
 
   constructor() {
     this.app = express();
-    this.port = 5000;
+    this.port = 7000;
 
     this.initializeMiddleware();
     this.initializeRoutes();
